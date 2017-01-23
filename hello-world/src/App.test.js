@@ -18,5 +18,6 @@ it('Game has board', () => {
   ReactDOM.render(<Game />, div);
   const board = document.getElementsByClassName('board')[0];
   // TODO: investigate syntax for #TESTS
-  //expect(board).isNot(null);
+  //expect(board).toEqual(null);
+
 });

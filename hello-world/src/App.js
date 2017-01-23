@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+import Game from './game/game';
 
 class App extends Component {
 
+  renderGame() {
+    return <Game />;
+  }
 
   render() {
     return (
@@ -14,6 +19,9 @@ class App extends Component {
         </div>
         <p>
           Here goes custom content
+        </p>
+        <p>
+          {this.renderGame()}
         </p>
       </div>
     );
