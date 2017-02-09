@@ -4,7 +4,10 @@ React demo project
 # hello-world
 Tic-tac toe example from React tutorial.
 
+# js-demo
+Some funny stuff with js
+
+# mocha-demo
+Some games using mocha and should to test stuff
+
 ## todo
-- #TESTS - invstigate syntax for tests. It looks like Karma tests at first glance
-- #DEBUG - investigate how to debug
-- What's the difference between `export class Game ...` and `export default Game;`
