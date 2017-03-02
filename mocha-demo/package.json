@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "devDependencies": {
     "mocha": "^3.2.0",
-    "should": "^11.2.0"
+    "should": "^11.2.0",
+    "ramda":"^0.23.0"
   },
   "scripts": {
     "test": "mocha *spec.js"
