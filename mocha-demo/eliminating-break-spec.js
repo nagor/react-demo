@@ -24,7 +24,6 @@ const get5KittensOldSchool = cats => {
     for (var i = 0; i < cats.length; i++) {
         if (isKitten(cats[i])) {
             newList.push(cats[i]);
-      
             if (newList.length >= 5) {
                 break;
             }
@@ -70,7 +69,6 @@ const takeFirstCurrying = limit => predicate => list => (i = 0, result = []) => 
             : takeFirst(limit, predicate, list, i + 1, result);
 };
 
-
 describe('Eliminating break', () => {
     require('should');
     it('isKitten can check if kitten is younger than 7 months', () => {
@@ -79,7 +77,7 @@ describe('Eliminating break', () => {
         isKitten({ months: 8 }).should.be.exactly(false).and.be.a.Boolean();
     });
 
-    it('firstKittenBreak can find kitten', () => { 
+    it('firstKittenBreak can find kitten', () => {
         firstKittenBreak(cats)
             .should.not.be.exactly(undefined)
             .and.have.property('name', 'Waffles');

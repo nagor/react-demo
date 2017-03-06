@@ -6,68 +6,72 @@
 
 // composes functions right tto left
 const compose = (...functions) => data =>
-    functions.reduceRight((value, func) => func(value), data)
+    functions.reduceRight((value, func) => func(value), data);
 
 // composes functions left to right
+/* eslint-disable no-unused-vars */
 const pipe = (...functions) => data =>
-    functions.reduce((value, func) => func(value), data)
+    functions.reduce((value, func) => func(value), data);
+/* eslint-enable no-unused-vars */
 
-const set = prop => obj => value =>
-    (obj[prop] = value, obj)
+const set = prop => obj => value => {
+    obj[prop] = value;
+    return obj;
+};
 
 const map = f => x =>
-    Array.prototype.map.call(x, f)
+    Array.prototype.map.call(x, f);
 
 const join = seperator => list =>
-    Array.prototype.join.call(list, seperator)
+    Array.prototype.join.call(list, seperator);
 
 /***********************************************************
  * dom.js
  ***********************************************************/
-const setInnerHtml = set('innerHTML')
+const setInnerHtml = set('innerHTML');
 
 /***********************************************************
  * html.js
  ***********************************************************/
 const encodeAttribute = (x = '') =>
-    x.replace(/"/g, '&quot;')
+    x.replace(/"/g, '&quot;');
 
 const toAttributeString = (x = {}) =>
     compose(
         join(' '),
         map(attr => `${encodeAttribute(attr)}="${encodeAttribute(x[attr])}"`),
         Object.keys
-    )(x)
+    )(x);
 
 const tagAttributes = x => (contents = '') =>
-    `<${x.tag}${x.attr ? ' ' : ''}${toAttributeString(x.attr)}>${contents}</${x.tag}>`
+    `<${x.tag}${x.attr ? ' ' : ''}${toAttributeString(x.attr)}>${contents}</${x.tag}>`;
 
 const tag = x =>
     typeof x === 'string'
         ? tagAttributes({ tag: x })
-        : tagAttributes(x)
+        : tagAttributes(x);
 
 // list-group
-const listGroupTag = tag({ tag: 'ul', attr: { class: 'list-group' } })
-const listGroupItem = tag({ tag: 'li', attr: { class: 'list-group-item' } })
+const listGroupTag = tag({ tag: 'ul', attr: { class: 'list-group' } });
+const listGroupItem = tag({ tag: 'li', attr: { class: 'list-group-item' } });
 const listGroupItems = list =>
     list.map(listGroupItem)
-        .join('')
-const listGroup = compose(listGroupTag, listGroupItems)
+        .join('');
+const listGroup = compose(listGroupTag, listGroupItems);
 
 // panel
-const panelTag = tag({ tag: 'div', attr: { class: 'panel panel-default' } })
-const panelBody = tag({ tag: 'div', attr: { class: 'panel-body' } })
-const basicPanel = compose(panelTag, panelBody)
+const panelTag = tag({ tag: 'div', attr: { class: 'panel panel-default' } });
+const panelBody = tag({ tag: 'div', attr: { class: 'panel-body' } });
+const basicPanel = compose(panelTag, panelBody);
 
-const listGroupPanel = compose(basicPanel, listGroup)
+const listGroupPanel = compose(basicPanel, listGroup);
 
 /***********************************************************
  * main.js
  ***********************************************************/
-const content = { innerHTML: '' }
+const content = { innerHTML: '' };
 const main = e =>
-    compose(setInnerHtml(e), listGroupPanel)
+    compose(setInnerHtml(e), listGroupPanel);
 
 const list = [
     'Cras justo odio',
@@ -75,7 +79,7 @@ const list = [
     'Morbi leo risus',
     'Porta ac consectetur ac',
     'Vestibulum at eros'
-]
+];
 
 describe('functional compositon', () => {
     require('should');

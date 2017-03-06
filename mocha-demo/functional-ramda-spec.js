@@ -46,9 +46,9 @@ const personToFormattedNameWithPrependent = R.compose(
     capitalizeNames
 );
 
-describe('Ramda tests', () => { 
+describe('Ramda tests', () => {
     require('should');
-    it('compose works', () => { 
+    it('compose works', () => {
         people.map(personToFormattedName)
             .should.be.an.Array()
             .and.containDeep(['KOSTER, C.', 'DOE, J.'])
@@ -63,7 +63,6 @@ describe('Ramda tests', () => {
     });
 });
 
-
 // some OOP appoach
 
 // A possible OOP variation
@@ -74,7 +73,8 @@ var Person = function (name) {
         let abbreviatedFirst = upperNames[0].substr(0, 1);
         this.name = upperNames[1] + ', ' + abbreviatedFirst + '.';
     };
-}
+};
+
 function formatPeopleNames(persons) {
     var formattedNames = [];
     for (var i = 0; i < persons.length; ++i) {
@@ -90,7 +90,6 @@ var peopleObjs = [person1, person2];
 describe('Some OOP aproach tests', () => {
     require('should');
     it('oop apporach works', () => {
-
         formatPeopleNames(peopleObjs)
             .should.be.an.Array()
             .and.containDeep(['KOSTER, C.', 'DOE, J.'])

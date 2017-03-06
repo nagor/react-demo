@@ -26,9 +26,8 @@ const getDay = switchcase({
     6: 'Saturday'
 })('Unknown');
 const getDayString = (dayNumber) => getDay(dayNumber);
-new Date().getDay()
 
-var should = require('should');
+require('should');
 describe('Functional switch', function () {
     describe('Counter', function () {
         var increment = { type: 'INCREMENT' };

@@ -25,9 +25,9 @@ function sumCurried(value) {
                         ? proceed()
                         : result;
                 }
-            }
-        }
-    }
+            };
+        };
+    };
 }
 
 function sumCurriedFined(value) {
@@ -41,10 +41,10 @@ function sumCurriedFined(value) {
                         ? proceed()
                         : result;
                 }
-            }
+            };
         }
         return startingFrom()();
-    }
+    };
 }
 
 describe('Eliminating loop', () => {

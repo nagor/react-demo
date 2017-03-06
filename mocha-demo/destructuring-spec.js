@@ -1,4 +1,4 @@
-function writeName({ name, age }){
+function writeName({ name, age }) {
     console.log(name);
     console.log(age);
 }
@@ -8,7 +8,6 @@ const user = {
     gender: 'male',
     age: '24'
 };
-
 
 describe('Destructuring', () => {
     require('should');

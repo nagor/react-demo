@@ -28,10 +28,12 @@ function f1() {
     return v;
 }
 
+/* eslint-disable no-unused-vars */
 function f2() {
     var v = 2;
     return f1(); // Will this print 1 or 2?
 };
+/* eslint-enable no-unused-vars */
 
 describe('Closures', () => {
     require('should');
@@ -43,5 +45,3 @@ describe('Closures', () => {
         f2().should.be.exactly(1);
     });
 });
-
-

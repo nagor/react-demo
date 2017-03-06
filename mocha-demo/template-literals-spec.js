@@ -8,9 +8,9 @@ describe('Template Literals', () => {
     });
 
     it('Template literals can handle multilines', () => {
-        let multi_line = `This is a multi-line comment,
+        let multiLine = `This is a multi-line comment,
             spread over 3
             lines`;
-        /(\n)/.exec(multi_line).length.should.be.exactly(2);
+        /(\n)/.exec(multiLine).length.should.be.exactly(2);
     });
 });

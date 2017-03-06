@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare, no-unused-vars, no-undef, no-const-assign */
+
 describe('var let const', () => {
     require('should');
     it('let/const can persitst block context', () => {
@@ -27,9 +29,10 @@ describe('var let const', () => {
         const obj = {
             name: 'John'
         };
-        (() => obj = 'key2').should.throw(TypeError);
+        (() => { obj = 'key2'; }).should.throw(TypeError);
         obj.name = 'Michael';
         obj.name.should.be.exactly('Michael');
     });
-
 });
+
+/* eslint-enable no-redeclare, no-unused-vars, no-undef, no-const-assign */
