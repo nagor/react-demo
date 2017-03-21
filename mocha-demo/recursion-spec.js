@@ -1,7 +1,10 @@
-var countLength = function countLength(arr, accum = 0) {
-    return arr.slice(0, 1)[0] === undefined
-        ? accum
-        : countLength(arr.slice(1), accum + 1);
+var countLength = function countLength(arr) {
+    function countLengthFor(arr, accum) {
+        return arr.slice(0, 1)[0] === undefined
+            ? accum
+            : countLengthFor(arr.slice(1), accum + 1);
+    }
+    return countLengthFor(arr, 0);
 };
 
 describe('recLength rec', () => {
