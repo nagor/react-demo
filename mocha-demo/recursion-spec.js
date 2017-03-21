@@ -1,31 +1,22 @@
-var countLength = function countLength(arr) {
-    function countLengthFor(arr, accum) {
+function countLength(arr) {
+    return arr[0] === undefined
+        ? 0
+        : 1 + countLength(arr.slice(1));
+}
+
+function sum(arr) {
+    return arr[0] === undefined
+        ? 0
+        : arr[0] + sum(arr.slice(1));
+}
+
+function max(arr) {
+    return function maxFor(accum = -Infinity) {
         return arr[0] === undefined
             ? accum
-            : countLengthFor(arr.slice(1), accum + 1);
-    }
-    return countLengthFor(arr, 0);
-};
-
-var sum = function sum(arr) {
-    function sumFor(arr, accum) {
-        var item = arr[0];
-        return item === undefined
-            ? accum
-            : sumFor(arr.slice(1), accum + item);
-    }
-    return sumFor(arr, 0);
-};
-
-var max = function max(arr) {
-    function maxFor(arr, accum) {
-        var item = arr[0];
-        return item === undefined
-            ? accum
-            : maxFor(arr.slice(1), item > accum ? item : accum);
-    }
-    return maxFor(arr, -Infinity);
-};
+            : max(arr.slice(1))(arr[0] > accum ? arr[0] : accum);
+    };
+}
 
 describe('recursion', () => {
     require('should');
@@ -40,7 +31,7 @@ describe('recursion', () => {
     });
 
     it('can count max', () => {
-        max([4, 5, 6, 7, 3, 2, 1, 7, 4]).should.be.exactly(7);
-        max([]).should.be.exactly(-Infinity);
+        max([4, 5, 6, 7, 3, 2, 1, 7, 4])().should.be.exactly(7);
+        max([])().should.be.exactly(-Infinity);
     });
 });
