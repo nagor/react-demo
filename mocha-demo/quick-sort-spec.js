@@ -1,20 +1,23 @@
-var quickSort = function quickSort(arr) {
-    if (arr.length < 2) {
-        return arr;
-    }
-    const pivot = arr.slice(0, 1);
-    const rest = arr.slice(1);
-    const { left, right } = partition(pivot, rest);
-
-    return quickSort(left).concat(pivot, quickSort(right));
+function quickSort(arr) {
+    return arr.length < 2
+        ? arr
+        : (() => {
+            const { left, right } = partition(arr.slice(1))(arr[0]);
+            return quickSort(left).concat(arr[0], quickSort(right));
+        })();
 };
 
-function partition(pivot, arr, i = 0, left = [], right = []) {
-    return i >= arr.length
-        ? { left, right }
-        : arr[i] > pivot
-            ? partition(pivot, arr, i + 1, left, right.concat(arr[i]))
-            : partition(pivot, arr, i + 1, left.concat(arr[i]), right);
+function partition(arr) {
+    return function forPivot(pivot) {
+        function byParts(pivot, arr, i = 0, left = [], right = []) {
+            return i >= arr.length
+                ? { left, right }
+                : arr[i] > pivot
+                    ? byParts(pivot, arr, i + 1, left, right.concat(arr[i]))
+                    : byParts(pivot, arr, i + 1, left.concat(arr[i]), right);
+        }
+        return byParts(pivot, arr);
+    };
 }
 
 describe('recursion', () => {
