@@ -1,6 +1,6 @@
 var countLength = function countLength(arr) {
     function countLengthFor(arr, accum) {
-        return arr.slice(0, 1)[0] === undefined
+        return arr[0] === undefined
             ? accum
             : countLengthFor(arr.slice(1), accum + 1);
     }
@@ -9,7 +9,7 @@ var countLength = function countLength(arr) {
 
 var sum = function sum(arr) {
     function sumFor(arr, accum) {
-        var item = arr.slice(0, 1)[0];
+        var item = arr[0];
         return item === undefined
             ? accum
             : sumFor(arr.slice(1), accum + item);
@@ -19,7 +19,7 @@ var sum = function sum(arr) {
 
 var max = function max(arr) {
     function maxFor(arr, accum) {
-        var item = arr.slice(0, 1)[0];
+        var item = arr[0];
         return item === undefined
             ? accum
             : maxFor(arr.slice(1), item > accum ? item : accum);
